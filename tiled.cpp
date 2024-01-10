@@ -51,12 +51,12 @@ for(int i=0;i<64;i+=8)
            row27=_mm256_loadu_ps(&matrix1[i+4][j]);
            row28=_mm256_loadu_ps(&matrix1[i+5][j]);
            row29=_mm256_loadu_ps(&matrix1[i+6][j]);
-           row30=_mm256_loadu_ps(&matrix1[i+7][j]);
-
+           row30=_mm256_loadu_ps(&matrix1[i+7][j]);// Loading eight rows of matrix 1 of size 8*8 tile  from  64*64
+             
  row14 = _mm256_loadu_ps(&matrix2[j][k]);
     row15= _mm256_loadu_ps(&matrix2[j+1][k]);
     row16 = _mm256_loadu_ps(&matrix2[j+2][k]);
-    row17 = _mm256_loadu_ps(&matrix2[j+3][k]);
+    row17 = _mm256_loadu_ps(&matrix2[j+3][k]);   //loading first 4 rows of matrix 2 to take transpose of the 8*8 tile
     
     row5 = _mm256_unpacklo_ps(row14, row15);
     row6 = _mm256_unpacklo_ps(row16, row17);
@@ -76,7 +76,7 @@ for(int i=0;i<64;i+=8)
     row18 = _mm256_loadu_ps(&matrix2[j+4][k]);
     row19 = _mm256_loadu_ps(&matrix2[j+5][k]);
     row20 = _mm256_loadu_ps(&matrix2[j+6][k]);
-    row21 = _mm256_loadu_ps(&matrix2[j+7][k]);
+    row21 = _mm256_loadu_ps(&matrix2[j+7][k]); //loading next  4 rows of matrix 2 to take transpose of the 8*8 tile
 
     row4 = _mm256_unpacklo_ps(row18, row19);
     row5 = _mm256_unpacklo_ps(row20, row21);
@@ -89,10 +89,10 @@ for(int i=0;i<64;i+=8)
     row4 = _mm256_permutevar8x32_ps(row6, permuteOrder);
     row5 = _mm256_permutevar8x32_ps(row7, permuteOrder);
 
-    row0 = _mm256_permute2f128_ps(row0, row4, 0x20);//row 0
-    row1 = _mm256_permute2f128_ps(row1, row5, 0x20);//1
-    row2 = _mm256_permute2f128_ps(row2, row4, 0x30);//4
-    row3 = _mm256_permute2f128_ps(row3, row5, 0x30);//5
+    row0 = _mm256_permute2f128_ps(row0, row4, 0x20);//row 0  of transpose matrix
+    row1 = _mm256_permute2f128_ps(row1, row5, 0x20);//row 1 of transpose matrix
+    row2 = _mm256_permute2f128_ps(row2, row4, 0x30);//row 4 of transpose matrix
+    row3 = _mm256_permute2f128_ps(row3, row5, 0x30);//row 5 of transpose matrix
 
    
 
@@ -123,10 +123,10 @@ for(int i=0;i<64;i+=8)
     row12 = _mm256_permutevar8x32_ps(row8, permuteOrder);
     row13 = _mm256_permutevar8x32_ps(row9, permuteOrder);
 
-    row4 = _mm256_permute2f128_ps(row4, row12, 0x20);//row 2
-    row5 = _mm256_permute2f128_ps(row5, row13, 0x20);//3
-    row6 = _mm256_permute2f128_ps(row6, row12, 0x30);//6
-    row7 = _mm256_permute2f128_ps(row7, row13, 0x30);//7
+    row4 = _mm256_permute2f128_ps(row4, row12, 0x20);//row 2 of transpose matrix
+    row5 = _mm256_permute2f128_ps(row5, row13, 0x20);//row 3 of transpose matrix
+    row6 = _mm256_permute2f128_ps(row6, row12, 0x30);//row 6 of transpose matrix
+    row7 = _mm256_permute2f128_ps(row7, row13, 0x30);//row 7 of transpose matrix
 
  std::vector<AVXVector> mat2;
      mat2.push_back(AVXVector(row0));
@@ -184,6 +184,6 @@ for (int l = 0; l < 8; l++) {
 //         cout<<endl;
        
 //        }
-//         cout<<"gap"<<endl; 
+
 
 }
