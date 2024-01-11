@@ -8,18 +8,18 @@ int main() {
     using std::chrono::duration;
     using std::chrono::milliseconds;
 
-    int size;
-    std::cin >> size;
+    int size=65535;
+
 
     int final_size = size + (8 - (size % 8));
     float a[final_size] = {0};
     float b[final_size] = {0};
     float ans[final_size] = {0};
-
+     
     for (int i = 0; i < size; i++)
-        std::cin >> a[i];
+         a[i]=i;
     for (int j = 0; j < size; j++)
-        std::cin >> b[j];
+         b[j]=j;
 
     auto t1 = high_resolution_clock::now();
     __m256 vec_one;
@@ -33,10 +33,10 @@ int main() {
     }
     auto t2 = high_resolution_clock::now();
     duration<double, std::milli> ms_double = t2 - t1;
-    std::cout << ms_double.count() << "ms\n";
+    std::cout << ms_double.count() ;
 
-    for (int i = 0; i < size; i++)
-        std::cout << ans[i] << " ";
+    // for (int i = 0; i < size; i++)
+    //     std::cout << ans[i] << " ";
     
     std::cout << std::endl;
 
@@ -46,7 +46,7 @@ int main() {
     }
     auto t4 = high_resolution_clock::now();
     ms_double = t4 - t3;
-    std::cout << ms_double.count() << "ms\n";
+    std::cout << ms_double.count();
 
     return 0;
 }
