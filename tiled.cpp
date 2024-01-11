@@ -18,6 +18,9 @@ struct AVXVector {
 
 int main()
 {
+     vector<double> myVector;
+    int count=0;
+    
     using std::chrono::high_resolution_clock;
     using std::chrono::duration_cast;
     using std::chrono::duration;
@@ -174,6 +177,10 @@ for (int l = 0; l < 8; l++) {
      auto t2 = high_resolution_clock::now();
     duration<double, std::milli> ms_double = t2 - t1;
     std::cout << ms_double.count() << "ms\n";
+//    myVector.push_back(ms_double.count());
+// count=count-1;
+    
+
 
 // for(int s=0;s<64;s++)
 //        {
@@ -184,6 +191,7 @@ for (int l = 0; l < 8; l++) {
 //         cout<<endl;
        
 //        }
+
 
 
 }

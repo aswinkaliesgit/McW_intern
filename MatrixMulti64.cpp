@@ -45,13 +45,13 @@ auto t1 = high_resolution_clock::now();
     duration<double, std::milli> ms_double = t2 - t1;
     std::cout << ms_double.count() << "ms\n";
 
-    std::cout << "Result Matrix:\n";
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < N; ++j) {
-            std::cout << result[i][j] << " ";
-        }
-        std::cout << "\n";
-    }
+    // std::cout << "Result Matrix:\n";
+    // for (int i = 0; i < N; ++i) {
+    //     for (int j = 0; j < N; ++j) {
+    //         std::cout << result[i][j] << " ";
+    //     }
+    //     std::cout << "\n";
+    // }
 
     return 0;
 }
